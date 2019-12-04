@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create</title>
+    <link href="css/stylesheet.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+<header id="header">
+    <nav class="links" style="--items: 5;">
+        <a href="/">Inicio</a>
+        <a href="crear.html">Crear</a>
+        <a href="#">Editar</a>
+        <a href="#">Eliminar</a>
+        <span class="line"></span>
+    </nav>
+</header>
+
+<div class="signupSection">
+    <form action="" method="POST" id="formulario" class="signupForm" name="signupform">
+        <h2>Estudiante</h2>
+        <ul class="noBullet">
+            <li>
+                <label for="matricula"></label>
+                <input type="text" class="inputFields" id="matricula" name="matricula" placeholder="Matricula" value="" required/>
+            </li>
+            <li>
+                <label for="nombre"></label>
+                <input type="text" class="inputFields" id="nombre" name="nombre" placeholder="Nombre" required/>
+            </li>
+            <li>
+                <label for="correo"></label>
+                <input type="text" class="inputFields" id="correo" name="correo" placeholder="Correo" value="" required/>
+            </li>
+            <li>
+                <label for="carrera"></label>
+                <input type="text" class="inputFields" id="carrera" name="carrera" placeholder="Carrera" value="" required/>
+            </li>
+            <li id="center-btn">
+                <input type="submit" id="join-btn" name="crear">
+            </li>
+        </ul>
+    </form>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        // click on button submit
+        $("#join-btn").on('click', function(){
+            console.log("s");
+            // send ajax
+            $.ajax({
+                url: 'http://localhost:4567/rest/estudiantes/', // url where to submit the request
+                type : "POST", // type of action POST || GET
+                dataType : 'json', // data type
+                data : "{ 'nombre': 'Cristian', 'correo': 'cristianPrueba@gmail.com', 'carrera': 'ISC', 'matricula': '20151256' }", // post data || get data
+                success : function(result) {
+                    // you can see the result from the console
+                    // tab of the developer tools
+                    console.log(result);
+                },
+                error: function(xhr, resp, text) {
+                    console.log(xhr, resp, text);
+                }
+            })
+        });
+    });
+
+</script>
+<script src="/js/cliente.js"></script>
+</body>
+</html>
